@@ -8,6 +8,8 @@ import numpy as np
 from ase.io import read, write
 from scipy.stats import linregress
 
+from constant import ExampleLammpsDir
+
 
 def calculate_diffusion(msd_ana: msd.EinsteinMSD, x_value, y_value):
     # 假设后20%的区间为线性
@@ -177,8 +179,8 @@ def calculate_MSD(work_dir: Path):
 
 
 if __name__ == '__main__':
-    # work_dir = Path('/mnt/d/project/MSD-plot/example/vasp/')
-    work_dir = Path('/mnt/d/project/MSD-plot/example/lammps/')
-    # work_dir = Path('/mnt/d/project/MSD-plot/example/Gromax/xtc')
-    # work_dir = Path('/mnt/d/project/MSD-plot/example/Gromax/trr')
+    # work_dir = Path('example/vasp/')
+    work_dir = ExampleLammpsDir
+    # work_dir = Path('example/Gromax/xtc')
+    # work_dir = Path('example/Gromax/trr')
     calculate_MSD(work_dir)

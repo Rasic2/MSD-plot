@@ -1,0 +1,11 @@
+[project]
+name = "msd-plot"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ase>=3.25.0",
+    "mdanalysis>=2.9.0",
+    "tidynamics>=1.1.2",
+]
