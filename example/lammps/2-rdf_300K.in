@@ -1,0 +1,31 @@
+units           metal
+dimension       3
+boundary        p p p
+atom_style      atomic
+
+read_data       Al_fcc.data
+
+pair_style      eam/alloy
+pair_coeff      * * Al_Zhou04.eam.alloy Al
+mass            1 26.9815
+timestep        0.001
+
+# -------- 弛豫 --------
+velocity        all create 300 12345 mom yes rot no dist gaussian
+fix             1 all npt temp 300 300 0.1 iso 0 0 1.0
+thermo          100
+thermo_style    custom step temp press etotal
+run             40000
+unfix           1
+
+# -------- RDF --------
+fix             2 all nvt temp 300 300 0.1
+compute         myRDF all rdf 100
+fix             3 all ave/time 100 100 10000 c_myRDF[*] file rdf_300K.txt mode vector
+
+dump            1 all custom 500 dump_Al.lammpstrj id type x y z  # ✅ 提前到 run 之前！
+
+run             100000
+
+write_data      Al_300K_relaxed.data
+

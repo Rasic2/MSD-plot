@@ -1,0 +1,51 @@
+general:
+System = SnO2-110-2O2c
+ISYM = 0                  # 0 = no symmetry, 1 = have symmetry, 2 = have symmetry (more efficiency)
+ISTART = 0                  # 0 = new job, 1 = restart
+
+! Electronic Structure
+ISPIN=2                   # spin polarization 1 = no 2 = yes
+PREC= Normal
+ENCUT = 400 eV            # cutoff energy, for large system >= 400eV
+ALGO=Fast                 # IALGO  = 48  !  (Davidson: 38)+ RMM-DIIS algorithm  for electrons
+NELM=120                  # max iteracions in SC loop
+ISMEAR = -1; SIGMA = 0.05  #-5 for accurate total energy and DOS; 0 for large cell; 1 for metal
+LREAL = A                   # F for small molecule; A for normal system
+EDIFF  = 1.0E-5          # [Global break cond. for the elec. SC-loop] Energy; default EDIFF  = 1.0E-4
+
+! Geometry Structure
+ISIF = 0                    # [Stress tensor, 0 = not, 3 = relax latt+ions] p. 60
+EDIFFG = -0.05             # convergence criterion for forces
+NSW = 5000                 # max steps
+IBRION = 0      # 0 MD 1 Brodyn (opt,pseudo-newton TS) 2 CG (opt)  3 damped MD(opt) 5  FC 
+POTIM = 1.5                 # ion step size/ time step (fs) for MD
+
+LCHARG = .FALSE.                # write restart charge file
+NPAR = 4                  # adjust to number of processors;  best on berni up to 8 CPUs
+LWAVE = F                 #.True.
+VOSKOWN = 0                # 0 for PBE 1 for PW91
+
+AMIX = 0.4
+BMIX = 0.2
+AMIX_MAG = 0.8
+BMIX_MAG = 0.0001
+LMAXMIX = 6
+NSIM = 4                    # 4 NSIM bands are optimized at the same time
+
+! PseudoPotential
+#LDAU=.TRUE.               # LDA+U for Pseudopotential 
+#LDAUTYPE=2                # two types of atoms in the system: Ce and O
+#LDAUL= -1 3               #-1 = no orbital; 0= s orbital; 1=p orbital; 2= d orbital; 3 = f orbital
+#LDAUU= 0 5.5              # Pseudopotential for Cerium f orbital=5.5-0.5=5eV
+#LDAUJ= 0 0.5
+
+LVDW = .TRUE.
+IVDW = 12
+
+NBLOCK = 1
+APACO = 16
+NPACO = 200
+TEBEG = 300
+TEEND = 300
+SMASS = 1
+NWRITE = 0
