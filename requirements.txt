@@ -1,0 +1,12 @@
+python==3.10
+MDAnalysis==2.9.0
+os
+pathlib
+numpy
+matplotlib
+ipywidgets
+ase
+scipy
+
+
+
